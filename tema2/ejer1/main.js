@@ -15,16 +15,28 @@ function chars3(...rest) {
   return newArr.flat();
 }
 
-const result = chars('hola', 'adios');
+function chars4(...rest) {
+  let result = [];
+  for (const string of rest) {
+    result = [...result, ...string];
+  }
+  return result;
+}
+
+const result1 = chars('hola', 'adios');
 const result2 = chars2('hola', 'adios');
 const result3 = chars3('hola', 'adios');
+const result4 = chars4('hola', 'adios');
 
-console.log(result);
+
+console.log(result1);
 console.log(result2);
 console.log(result3);
+console.log(result4);
 
 
-//default(): Recibe un objeto de configuración y devuelve ese mismo objeto pero con todos los
+
+// default(): Recibe un objeto de configuración y devuelve ese mismo objeto pero con todos los
 // valores no configurados con sus valores por defecto (usa propiedades y valores por defecto inventadas)
 
 const obj1 = {
@@ -51,6 +63,26 @@ const resultObj3 = defaultFn({});
 console.log(resultObj1);
 console.log(resultObj2);
 console.log(resultObj3);
+
+// Solución Mica
+const defaultConfig = {
+  prop1: 0,
+  prop2: 1,
+  prop: 3,
+}
+
+function defaultFn2 (config) {
+
+  return { ...defaultConfig, ...config};
+}
+
+const resultObj4 = defaultFn2({prop1: 25});
+
+console.log(resultObj4);
+
+
+
+
 
 
 // params():
