@@ -13,12 +13,21 @@ const flight3 = {
   destination: 'Malaga',
   time: '1h'
 }
+const flight4 = {
+  origin: 'Bilbao',
+  destination: 'Zaragoza',
+  time: '1h'
+}
+const flight5 = {
+  origin: 'zaragoza',
+  destination: 'Madrid',
+  time: '1h'
+}
 
 let allFlights = [];
 let allCities = new Set();
 let flightsMapByOrigin = new Map();
 let flightsMapByDestination = new Map();
-
 
 function addFlight(flight) {
   allFlights.push(flight);
@@ -42,6 +51,8 @@ function addFlightByCity(map, flight, city){
 addFlight(flight1)
 addFlight(flight2)
 addFlight(flight3)
+addFlight(flight4)
+addFlight(flight5)
 
 function getFlightsByOrigin(city){
   return flightsMapByOrigin.get(city);
@@ -58,7 +69,5 @@ function getFlights(){
 function getCities(){
   return allCities;
 }
-
-
 
 export { getCities, getFlights, getFlightsByDestination, getFlightsByOrigin };

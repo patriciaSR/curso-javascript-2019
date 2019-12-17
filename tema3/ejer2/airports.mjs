@@ -34,5 +34,4 @@ let airportsMap2 = new Map()
   addAerport(pratsInfo)
   addAerport(castellonInfo)
 
-
 export { airportsMap, airportsMap2 };
