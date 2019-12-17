@@ -34,8 +34,6 @@ console.log(result2);
 console.log(result3);
 console.log(result4);
 
-
-
 // default(): Recibe un objeto de configuración y devuelve ese mismo objeto pero con todos los
 // valores no configurados con sus valores por defecto (usa propiedades y valores por defecto inventadas)
 
@@ -46,7 +44,7 @@ const obj2 = {
   city: 'Londres'
 };
 
-function defaultFn({ name = 'Paco', lastName = 'García', city = 'Madrid'}) {
+function defaultFn({ name = 'Paco', lastName = 'García', city = 'Madrid' }) {
   const newObj = {
     name,
     lastName,
@@ -71,18 +69,14 @@ const defaultConfig = {
   prop: 3,
 }
 
-function defaultFn2 (config) {
+function defaultFn2(config) {
 
-  return { ...defaultConfig, ...config};
+  return { ...defaultConfig, ...config };
 }
 
-const resultObj4 = defaultFn2({prop1: 25});
+const resultObj4 = defaultFn2({ prop1: 25 });
 
 console.log(resultObj4);
-
-
-
-
 
 
 // params():
@@ -100,7 +94,7 @@ const paramsObj2 = {
   a: 1,
   c: 3,
 };
-function params({ a = 0, b = 0, c = 0} = {}) {
+function params({ a = 0, b = 0, c = 0 } = {}) {
   console.log(a, b, c);
 }
 
