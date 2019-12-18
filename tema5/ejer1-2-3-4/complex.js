@@ -29,7 +29,8 @@ module.exports = class Complex {
     // return a new Complex object whose value is the reciprocal of this
     reciprocal() {
         if(this.realPart === 0 && this.imaginaryPart === 0) {
-            return new Error('division by zero');
+            const error = new Error('division by zero');
+            throw error;
         };
         
         let scale = Math.pow(this.realPart, 2.0) + Math.pow(this.imaginaryPart, 2.0);
