@@ -1,82 +1,85 @@
 const express = require('express');
+const cors = require('cors');
+
 
 //Generate unique id for resources
 const uuid = require('uuid/v4');
 
 const app = express();
-
+//Enable CORS
+app.use(cors());
 //Convert json bodies to JavaScript object
 app.use(express.json());
 
 //Save info in memory 
-const ads = new Map();
+const items = new Map();
 
-app.post('/ads', (req, res) => {
-    const ad = req.body;
+app.post('/items', (req, res) => {
+    const item = req.body;
     //Validation
-    if (typeof ad.message != 'string' || typeof ad.author != 'boolean') {
+    if (typeof item.description != 'string' || typeof item.checked != 'boolean') {
         res.sendStatus(400);
     } else {
         //Create object with needed fields and assign id
-        const newAd = {
+        const newItem = {
             id: uuid(),
-            message: ad.message,
-            author: ad.author
+            description: item.description,
+            checked: item.checked
         };
         //Save resource
-        ads.set(newAd.id, newAd);
+        items.set(newItem.id, newItem);
         //Return new resource
-        res.json(newAd);
+        res.json(newItem);
     }
 });
 
-app.get('/ads', (req, res) => {
-    const allAds = [...ads.values()];
-    res.json(allAds);
+app.get('/items', (req, res) => {
+    const allItems = [...items.values()];
+    res.json(allItems);
 });
 
-app.get('/ads/:id', (req, res) => {
+app.get('/items/:id', (req, res) => {
     const id = req.params.id;
-    const ad = ads.get(id);
-    if (!ad) {
+    const item = items.get(id);
+    if (!item) {
         res.sendStatus(404);
     } else {
-        res.json(ad);
+        res.json(item);
     }
 });
 
-app.delete('/ads/:id', (req, res) => {
+app.delete('/items/:id', (req, res) => {
     const id = req.params.id;
-    const ad = ads.get(id);
-    if (!ad) {
+    const item = items.get(id);
+    if (!item) {
         res.sendStatus(404);
     } else {
-        ads.delete(id);
-        res.json(ad);
+        items.delete(id);
+        res.json(item);
     }
 });
 
-app.put('/ads/:id', (req, res) => {
+app.put('/items/:id', (req, res) => {
     const id = req.params.id;
-    const ad = ads.get(id);
-    if (!ad) {
+    const item = items.get(id);
+    if (!item) {
         res.sendStatus(404);
     } else {
-        const adReq = req.body;
+        const itemReq = req.body;
         //Validation
-        if (typeof adReq.message != 'string' || typeof adReq.author != 'string') {
+        if (typeof itemReq.description != 'string' || typeof itemReq.checked != 'boolean') {
             res.sendStatus(400);
         } else {
             //Create object with needed fields and assign id
-            const newAd = {
+            const newItem = {
                 id,
-                message: adReq.message,
-                author: adReq.author
+                description: itemReq.description,
+                checked: itemReq.checked
             };
             //Update resource
-            ads.set(id, newAd);
+            items.set(id, newItem);
             //Return new resource
-            res.json(newAd);
+            res.json(newItem);
         }
     }
 });

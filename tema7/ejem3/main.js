@@ -1,0 +1,1 @@
+fetch('http://localhost:3000/ads/').then(res => res.json()).then(data => console.log(data));
