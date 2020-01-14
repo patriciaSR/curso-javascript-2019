@@ -4,14 +4,7 @@
     <button @click="addElem()">Añadir</button>
     <button @click="deleteCheckedTasks()">Borrar tareas terminadas</button>
     <ul v-if="elems.length > 0">
-      <li v-for="elem in elems" :key="elem.id">
-        <input type="checkbox" v-model="elem.checked" />
-        <p
-          :class="{ crossed: elem.checked }"
-          :style="{display: inline, color: color}"
-        >{{elem.value}}</p>
-        <button @click="deleteElem(elem.id)">Borrar</button>
-      </li>
+      <ListElement @delete="deleteElem(elem.id)" v-for="elem in elems" :elem="elem" :key="elem.id" />
     </ul>
     <p v-else>No hay tareas</p>
   </div>
@@ -19,6 +12,8 @@
 
 
 <script>
+import ListElement from './components/ListElement';
+
 let index = 0;
 
 export default {
@@ -26,10 +21,11 @@ export default {
   data: () => {
     return {
       input: "",
-      elems: [],
-      color: "red",
-      inline: "inline"
+      elems: []
     };
+  },
+  components: {
+    ListElement
   },
   methods: {
     addElem: function() {
@@ -66,8 +62,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.crossed {
-  text-decoration: line-through;
-}
-</style>
