@@ -56,7 +56,7 @@ export default {
 
       // let arr = this.elems.length;
 
-      // for (let i = arr - 1; (i = 0); i--) {
+      // for(let i=(arr-1); i=0; i--) {
       //   if (this.elems[i].checked === true) {
       //     this.elems.splice(i, 1);
       //   }
